@@ -25,6 +25,7 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
+
   drawLine(250,599,0,599);
   drawEllipse(125, 599, 125, 50);
   drawLine(150,549,150,407);
@@ -38,7 +39,6 @@ void RenderWidget::paintEvent(QPaintEvent *){
   drawLine(249,168,282,191);
   drawArc(345,280,70, 240, 110);
   drawLine(413,195,262,351);
-  
   drawArc(340,270,293, 470, 40);
 }
 
@@ -48,9 +48,15 @@ void RenderWidget::mapPoint(int &x, int &y){
 }
 
 void RenderWidget::drawLine(int x1, int y1, int x2, int y2){
+
   QPainter painter(this);
   QColor color(0, 0, 0);
   painter.setPen(color);
+
+  if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0){
+    mapPoint(x1, y1);
+    mapPoint(x2, y2);
+  }
 
   int dx = abs(x2 - x1);
   int dy = abs(y2 - y1);
@@ -86,6 +92,11 @@ void RenderWidget::drawLineFromDerivation(int x1, int y1, int x2, int y2){
   QPainter painter(this);
   QColor color(0, 0, 0);
   painter.setPen(color);
+
+  if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0){
+    mapPoint(x1, y1);
+    mapPoint(x2, y2);
+  }
 
   painter.drawPoint(x1, y1);
 
@@ -166,6 +177,10 @@ void RenderWidget::drawCircle(float xc, float yc, float r){
   QColor color(0, 0, 0);
   painter.setPen(color);
 
+  if (yc < 0 || xc < 0 ){
+    mapPoint(xc, yc);
+  }
+
   float x = r, y = 0; // The first point in the circle
   float theta = 1 / r;
   float sinTheta = sin(theta), cosTheta = cos(theta);
@@ -199,6 +214,10 @@ void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
   QColor color(0, 0, 0);
   painter.setPen(color);
 
+  if (yc < 0 || xc < 0 ){
+    mapPoint(xc, yc);
+  }
+
   float x = r * cos(t1), y = r * sin(t1);
   float theta = 1 / r;
   float sinTheta = sin(theta), cosTheta = cos(theta);
@@ -215,41 +234,21 @@ void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
   }
 }
 
-// void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
-
-//   QPainter painter(this);
-//   QColor color(0, 0, 0);
-//   painter.setPen(color);
-
-//   int numPoints = 1000;
-//   float theta = 2 * M_PI / numPoints;
-
-//   for (int i = 0; i <= numPoints; ++i) {
-      
-//     float currentTheta = theta * i ;
-//     /* This incremental change in angle helps distribute the points evenly around the ellipse
-//        resulting in a smoother and more accurate representation when drawing the ellipse. */
-
-//     float r = a * b / sqrt(pow(b * cos(currentTheta), 2) + pow(a * sin(currentTheta), 2));
-
-//     float xCoordinate = xc + r * cos(currentTheta);
-//     float yCoordinate = yc - r * sin(currentTheta); 
-
-//     painter.drawPoint(xCoordinate, yCoordinate);
-//   }
-//}
-
 void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
 
   QPainter painter(this);
   QColor color(0, 0, 0);
   painter.setPen(color);
 
+  if (yc < 0 || xc < 0 ){
+    mapPoint(xc, yc);
+  }
+
   int numPoints = 1000;
   float theta = M_PI / numPoints;  // * 2 if you want the whole ellipse
 
   for (int i = 0; i <= numPoints; ++i) {
-    
+
     float currentTheta = theta * i;
     float r = a * b / sqrt(pow(b * cos(currentTheta), 2) + pow(a * sin(currentTheta), 2));
 
