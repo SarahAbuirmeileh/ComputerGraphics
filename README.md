@@ -27,3 +27,12 @@ Create ellipses by specifying the center and major and minor axes with the drawE
 The following picture show the table lamp that we draw using the simple functionality provided above.
 
 ![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869)
+
+<br><br>
+
+## Note 📝
+Dimensions of the level in which the drawing is made are like this:
+
+<br>
+
+But if you want to use this dimension ⬇️ you can call the functinn mapPoint(x,y) to map it to the original dimension
