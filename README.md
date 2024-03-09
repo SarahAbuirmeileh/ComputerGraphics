@@ -32,7 +32,9 @@ The following picture show the table lamp that we draw using the simple function
 
 ## Note 📝
 Dimensions of the level in which the drawing is made are like this:
+![Your paragraph text (1)](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/3360822c-2c32-4ad7-8613-10f31133795d)
 
 <br>
 
 But if you want to use this dimension ⬇️ you can call the functinn mapPoint(x,y) to map it to the original dimension
+![Your paragraph text](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/024d7c9e-bfe1-45c7-b147-d5db7a9f8b74)
