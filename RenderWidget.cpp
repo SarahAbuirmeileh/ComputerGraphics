@@ -10,6 +10,8 @@
 #include "RenderWidget.h"
 #include <QPainter>
 #include <cmath>
+#include <QtMath>
+
 
 RenderWidget::RenderWidget(QWidget *parent) : QWidget(parent){
 }
@@ -23,7 +25,7 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
-  drawCircle(100, 100, 50);
+  drawArc(225,208,70, 220, 45);
 }
 
 void RenderWidget::mapPoint(int &x, int &y){
@@ -174,6 +176,28 @@ void RenderWidget::drawCircle(float xc, float yc, float r){
 
     x = x * cosTheta - y * sinTheta;
     y = x * sinTheta + y * cosTheta;
+  }
+}
+
+void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
+
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+
+  float x = r * cos(t1), y = r * sin(t1);
+  float theta = 1 / r;
+  float sinTheta = sin(theta), cosTheta = cos(theta);
+
+  t1 = t1 * M_PI / 180.0;
+  t2 = t2 * M_PI / 180.0;
+
+  while (t1 <= t2) {
+    painter.drawPoint(x + xc, yc -y);
+
+    x = x * cosTheta - y * sinTheta;
+    y = x * sinTheta + y * cosTheta;
+    t1 += theta;
   }
 }
 

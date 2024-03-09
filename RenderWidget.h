@@ -26,6 +26,8 @@ public:
   void drawLine(int x1, int y1, int x2, int y2);
   void drawLineFromDerivation(int x1, int y1, int x2, int y2);
   void drawCircle(float xc, float yc, float r);
+  void drawArc(float xc, float yc, float t1, float t2, float r);
+
 
 
 protected:
