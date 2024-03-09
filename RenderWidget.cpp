@@ -25,7 +25,7 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
-  drawArc(225,208,70, 220, 45);
+  drawEllipse(125, 599, 125, 50);
 }
 
 void RenderWidget::mapPoint(int &x, int &y){
@@ -200,6 +200,31 @@ void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
     t1 += theta;
   }
 }
+
+void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
+
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+
+  int numPoints = 1000;
+  float theta = 2 * M_PI / numPoints;
+
+  for (int i = 0; i <= numPoints; ++i) {
+      
+    float currentTheta = theta * i ;
+    /* This incremental change in angle helps distribute the points evenly around the ellipse
+       resulting in a smoother and more accurate representation when drawing the ellipse. */
+
+    float r = a * b / sqrt(pow(b * cos(currentTheta), 2) + pow(a * sin(currentTheta), 2));
+
+    float xCoordinate = xc + r * cos(currentTheta);
+    float yCoordinate = yc - r * sin(currentTheta); 
+
+    painter.drawPoint(xCoordinate, yCoordinate);
+  }
+}
+
 
 void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2){
   QPainter painter(this);
