@@ -10,8 +10,6 @@
 #include "RenderWidget.h"
 #include <QPainter>
 #include <cmath>
-#include <QtMath>
-
 
 RenderWidget::RenderWidget(QWidget *parent) : QWidget(parent){
 }
