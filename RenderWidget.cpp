@@ -25,7 +25,21 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
+  drawLine(250,599,0,599);
   drawEllipse(125, 599, 125, 50);
+  drawLine(150,549,150,407);
+  drawLine(115,548,115,407);
+  drawCircle(135,373,38);
+  drawCircle(135,373,12);
+  drawLine(131,335,190,235);
+  drawLine(163,350,220,255);
+  drawLine(191,233,235,265);
+  drawArc(220,202,70, 250, 45);
+  drawLine(249,168,282,191);
+  drawArc(345,280,70, 240, 110);
+  drawLine(413,195,262,351);
+  
+  drawArc(340,270,293, 470, 40);
 }
 
 void RenderWidget::mapPoint(int &x, int &y){
@@ -201,6 +215,30 @@ void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
   }
 }
 
+// void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
+
+//   QPainter painter(this);
+//   QColor color(0, 0, 0);
+//   painter.setPen(color);
+
+//   int numPoints = 1000;
+//   float theta = 2 * M_PI / numPoints;
+
+//   for (int i = 0; i <= numPoints; ++i) {
+      
+//     float currentTheta = theta * i ;
+//     /* This incremental change in angle helps distribute the points evenly around the ellipse
+//        resulting in a smoother and more accurate representation when drawing the ellipse. */
+
+//     float r = a * b / sqrt(pow(b * cos(currentTheta), 2) + pow(a * sin(currentTheta), 2));
+
+//     float xCoordinate = xc + r * cos(currentTheta);
+//     float yCoordinate = yc - r * sin(currentTheta); 
+
+//     painter.drawPoint(xCoordinate, yCoordinate);
+//   }
+//}
+
 void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
 
   QPainter painter(this);
@@ -208,14 +246,11 @@ void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
   painter.setPen(color);
 
   int numPoints = 1000;
-  float theta = 2 * M_PI / numPoints;
+  float theta = M_PI / numPoints;  // * 2 if you want the whole ellipse
 
   for (int i = 0; i <= numPoints; ++i) {
-      
-    float currentTheta = theta * i ;
-    /* This incremental change in angle helps distribute the points evenly around the ellipse
-       resulting in a smoother and more accurate representation when drawing the ellipse. */
-
+    
+    float currentTheta = theta * i;
     float r = a * b / sqrt(pow(b * cos(currentTheta), 2) + pow(a * sin(currentTheta), 2));
 
     float xCoordinate = xc + r * cos(currentTheta);
