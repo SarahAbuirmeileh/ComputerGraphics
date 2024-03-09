@@ -26,11 +26,120 @@ QSize RenderWidget::sizeHint() const{
 
 void RenderWidget::paintEvent(QPaintEvent*){
 
+  drawLine(0,0,100,200);
+  drawLineFromDerivation(0,0,100,200);
+  
 }
 
 void RenderWidget::mapPoint(int &x, int &y){
   x = x + 300;
   y = 300 - y;
+}
+
+void RenderWidget::drawLine(int x1, int y1, int x2, int y2){
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+
+  int dx = abs(x2 - x1);
+  int dy = abs(y2 - y1);
+
+  int xStep = (x1 < x2) ? 1 : -1;
+  int yStep = (y1 < y2) ? 1 : -1;
+
+  int pk = dx - dy; //decision parameter
+
+  while (true){
+    painter.drawPoint(x1, y1);
+
+    if (x1 == x2 && y1 == y2){
+      break;
+    }
+
+    int pk2 = 2 * pk;
+    // If pk2 is positive, the algorithm increments the y-coordinate
+    if (pk2 > -dy){
+      pk -= dy;
+      x1 += xStep;
+    }
+
+    if (pk2 < dx){
+      pk += dx;
+      y1 += yStep;
+    }
+  }
+}
+
+void RenderWidget::drawLineFromDerivation(int x1, int y1, int x2, int y2) {
+
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+
+  painter.drawPoint(x1, y1);
+
+  // Calculate constants outside the loop
+  int dx = x2-x1, dy = y2-y1;
+  int twoDy = 2*dy, twoDx =2*dx;
+  int twoDyMinusDx = twoDy-twoDx;
+  int twoDyPlusDx = twoDy+twoDx;
+  int twoDxMinusDy = twoDx-twoDy;
+  int twoDxPlusDy = twoDx+twoDy;
+  int pk;
+
+  if (abs(dx) >= abs(dy)) { // Slope between 0 and 1 (Case 1)
+    if (dx >= 0) {
+        pk = twoDy - dx;
+        while (x1 < x2) {
+            x1++;
+            if (pk < 0) {
+                pk += twoDy;
+            } else {
+                y1 += (dy >= 0) ? 1 : -1;
+                pk += twoDyMinusDx;
+            }
+            painter.drawPoint(x1, y1);
+        }
+    }else { // Slope between -1 and 0 (Case 3)
+        pk = twoDy + dx;
+        while (x1 > x2) {
+            x1--;
+            if (pk < 0) {
+                pk += twoDyPlusDx;
+            } else {
+                y1 += (dy >= 0) ? 1 : -1;
+                pk += twoDyMinusDx;
+            }
+            painter.drawPoint(x1, y1);
+        }
+    }
+  } else {  // Slope between 1 and infinity (Case 2 )
+      if (dy >= 0) {
+          pk = twoDx - dy;
+          while (y1 < y2) {
+              y1++;
+              if (pk < 0) {
+                  pk += twoDx;
+              } else {
+                  x1 += (dx >= 0) ? 1 : -1;
+                  pk += twoDxMinusDy;
+              }
+              painter.drawPoint(x1, y1);
+          }
+      }else { // Slope between -infinity and -1 (Case 4)
+          pk = twoDx + dy;
+          while (y1 > y2) {
+              y1--;
+              if (pk < 0) {
+                  pk += twoDxPlusDy;
+              } else {
+                  x1 += (dx >= 0) ? 1 : -1;
+                  pk += twoDxMinusDy;
+              }
+              painter.drawPoint(x1, y1);
+          }
+      }
+  }
 }
 
 void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2){

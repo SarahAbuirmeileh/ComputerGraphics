@@ -22,7 +22,9 @@ public:
 
   void myDrawLine(float x1, float y1, float x2, float y2);
   void drawTicks(float xc, float yc, float r);
-  void mapPoint(int &x, int &y)
+  void mapPoint(int &x, int &y);
+  void drawLine(int x1, int y1, int x2, int y2);
+  void drawLineFromDerivation(int x1, int y1, int x2, int y2);
 
 protected:
   void paintEvent(QPaintEvent *event) override;
