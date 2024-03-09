@@ -12,41 +12,28 @@
 #include <cmath>
 
 
-RenderWidget::RenderWidget(QWidget* parent) : QWidget(parent)
-{
+RenderWidget::RenderWidget(QWidget* parent) : QWidget(parent){
 
 }
 
-QSize RenderWidget::minimumSizeHint() const
-{
+QSize RenderWidget::minimumSizeHint() const{
   return QSize(100, 100);
 }
 
-QSize RenderWidget::sizeHint() const
-{
+QSize RenderWidget::sizeHint() const{
   return QSize(600, 600);
 }
 
-void RenderWidget::paintEvent(QPaintEvent*)
-{
-  QPainter painter(this);
+void RenderWidget::paintEvent(QPaintEvent*){
 
-  //    painter.setRenderHint(QPainter::Antialiasing, false);
-  QColor color(0, 0, 0);
-  painter.setPen(color);
-
-  painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
-  for (int x = 100; x < 300; ++x)
-  {
-    painter.drawPoint(x, x);
-  }
-
-  myDrawLine(50, 70, 300, 370);
 }
 
+void RenderWidget::mapPoint(int &x, int &y){
+  x = x + 300;
+  y = 300 - y;
+}
 
-void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2)
-{
+void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2){
   QPainter painter(this);
 
   //    painter.setRenderHint(QPainter::Antialiasing, false);
