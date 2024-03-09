@@ -24,6 +24,6 @@ Create ellipses by specifying the center and major and minor axes with the drawE
 <br><br>
 
 ## Drawing a Table Lamp 💡🛋️
-The following picture show the table lamp that we drowned using the simple functionality provided above.
+The following picture show the table lamp that we draw using the simple functionality provided above.
 
 ![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869)
