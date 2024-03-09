@@ -25,6 +25,8 @@ public:
   void mapPoint(int &x, int &y);
   void drawLine(int x1, int y1, int x2, int y2);
   void drawLineFromDerivation(int x1, int y1, int x2, int y2);
+  void drawCircle(float xc, float yc, float r);
+
 
 protected:
   void paintEvent(QPaintEvent *event) override;
