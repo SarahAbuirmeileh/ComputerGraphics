@@ -26,15 +26,17 @@ Create ellipses by specifying the center and major and minor axes with the drawE
 ## Drawing a Table Lamp 💡🛋️
 The following picture show the table lamp that we draw using the simple functionality provided above.
 
-![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869)
+![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869 )
 
 <br><br>
 
 ## Note 📝
-Dimensions of the level in which the drawing is made are like this:
-![Your paragraph text (1)](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/3360822c-2c32-4ad7-8613-10f31133795d)
+Dimensions of the level in which the drawing is made are like this: 
 
-<br>
+<img src="https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/718b3cab-ae39-42aa-9d41-9238c61ad73f" width="550" height="550">
+
+<br> 
 
 But if you want to use this dimension ⬇️ you can call the functinn mapPoint(x,y) to map it to the original dimension
-![Your paragraph text](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/024d7c9e-bfe1-45c7-b147-d5db7a9f8b74)
+
+<img src="https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/024d7c9e-bfe1-45c7-b147-d5db7a9f8b74" width="550" height="550">
