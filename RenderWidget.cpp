@@ -40,12 +40,12 @@ void RenderWidget::paintEvent(QPaintEvent *){
   drawArc(340,270,293, 470, 40);
 }
 
-void RenderWidget::mapPoint(int &x, int &y){
+void RenderWidget::mapPoint(float &x, float &y){
   x = x + 300;
   y = 300 - y;
 }
 
-void RenderWidget::drawLine(int x1, int y1, int x2, int y2){
+void RenderWidget::drawLine(float x1, float y1, float x2, float y2){
 
   QPainter painter(this);
   QColor color(0, 0, 0);
@@ -85,7 +85,7 @@ void RenderWidget::drawLine(int x1, int y1, int x2, int y2){
   }
 }
 
-void RenderWidget::drawLineFromDerivation(int x1, int y1, int x2, int y2){
+void RenderWidget::drawLineFromDerivation(float x1, float y1, float x2, float y2){
 
   QPainter painter(this);
   QColor color(0, 0, 0);
