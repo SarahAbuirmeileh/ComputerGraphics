@@ -25,8 +25,8 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
-  // drawTableLamp();
-  drawCar();
+   drawTableLamp();
+  //drawCar();
 
 }
 
@@ -43,14 +43,14 @@ void RenderWidget::drawTableLamp(){
 
   drawLine(131,335,190,235);
   drawLine(163,350,220,255);
-  drawLine(191,233,235,265);
+  drawLine(189,235,235,265);
 
-  drawArc(220,202,70, 250, 45);
+  drawArc(220,202,50, 230, 45);
   drawLine(249,168,282,191);
 
-  drawArc(345,280,70, 240, 110);
+  drawArc(345,280,50, 221, 110);
   drawLine(413,195,262,351);
-  drawArc(340,270,293, 470, 40);
+  drawArc(340, 270, 228, 405, 40);
 
 }
 
