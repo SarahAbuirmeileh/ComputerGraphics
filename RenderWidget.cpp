@@ -25,8 +25,8 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
-   drawTableLamp();
-  //drawCar();
+  //drawTableLamp();
+  drawCar();
 
 }
 
@@ -52,6 +52,46 @@ void RenderWidget::drawTableLamp(){
   drawLine(413,195,262,351);
   drawArc(340, 270, 228, 405, 40);
 
+}
+
+void RenderWidget::drawCar(){
+  drawCircle(200,500,25);
+  drawCircle(450,500,25);
+
+  drawCircle(200,500,60);
+  drawCircle(450,500,60);
+
+  drawLine(257, 520, 392, 520);
+  drawLine(257, 480, 392, 480);
+
+  drawLine(97, 520, 142, 520);
+  drawLine(97, 480, 142, 480);
+
+  drawLine(507, 520, 562, 520);
+  drawLine(507, 480, 562, 480);
+
+  drawLine(97, 480, 97, 520);
+  drawLine(562, 480, 562, 520);
+
+  drawArc(240, 480, 100, 180, 120);
+  drawArc(380, 423, -5, 159, 170);
+  drawLine(549, 425, 549, 480);
+
+  drawArc(125, 456, 82, 258, 20);
+  drawArc(542, 457, 290, 425, 20);
+
+  drawLine(394, 365, 514, 365);
+  drawArc(380, 430, 26, 85, 150);
+  drawLine(394, 365, 394, 281);
+
+  drawLine(244, 365, 364, 365);
+  drawArc(380, 430, 96, 155, 151);
+  drawLine(364, 365, 364, 281);
+
+  drawLine(339, 410, 364, 410);
+  drawLine(339, 420, 364, 420);
+  drawLine(364, 420, 364, 410);
+  drawLine(339, 410, 339, 420);
 }
 
 void RenderWidget::mapPoint(float &x, float &y){

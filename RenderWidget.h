@@ -29,7 +29,7 @@ public:
   void drawArc(float xc, float yc, float t1, float t2, float r);
   void drawEllipse(float xc, float yc, float a, float b);
   void drawTableLamp();
-
+  void drawCar();
 
 protected:
   void paintEvent(QPaintEvent *event) override;
