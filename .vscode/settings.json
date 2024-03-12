@@ -2,6 +2,12 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "random": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "array": "cpp",
+        "future": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp"
     }
 }

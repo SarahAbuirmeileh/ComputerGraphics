@@ -10,6 +10,8 @@
 #include "RenderWidget.h"
 #include <QPainter>
 #include <cmath>
+#include <QtMath>
+
 
 RenderWidget::RenderWidget(QWidget *parent) : QWidget(parent){
 }
@@ -23,21 +25,33 @@ QSize RenderWidget::sizeHint() const{
 }
 
 void RenderWidget::paintEvent(QPaintEvent *){
+  // drawTableLamp();
+  drawCar();
+
+}
+
+void RenderWidget::drawTableLamp(){
 
   drawLine(250,599,0,599);
   drawEllipse(125, 599, 125, 50);
+
   drawLine(150,549,150,407);
   drawLine(115,548,115,407);
+
   drawCircle(135,373,38);
   drawCircle(135,373,12);
+
   drawLine(131,335,190,235);
   drawLine(163,350,220,255);
   drawLine(191,233,235,265);
+
   drawArc(220,202,70, 250, 45);
   drawLine(249,168,282,191);
+
   drawArc(345,280,70, 240, 110);
   drawLine(413,195,262,351);
   drawArc(340,270,293, 470, 40);
+
 }
 
 void RenderWidget::mapPoint(float &x, float &y){
@@ -207,30 +221,38 @@ void RenderWidget::drawCircle(float xc, float yc, float r){
 }
 
 void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
+    // Ensure t1 is less than t2
+    if (t1 > t2) {
+        std::swap(t1, t2);
+    }
 
-  QPainter painter(this);
-  QColor color(0, 0, 0);
-  painter.setPen(color);
+    QPainter painter(this);
+    QColor color(0, 0, 0);
+    painter.setPen(color);
 
-  if (yc < 0 || xc < 0 ){
-    mapPoint(xc, yc);
-  }
+    float theta = 1 / r;
+    float sinTheta = sin(theta), cosTheta = cos(theta);
 
-  float x = r * cos(t1), y = r * sin(t1);
-  float theta = 1 / r;
-  float sinTheta = sin(theta), cosTheta = cos(theta);
+    t1 = t1 * M_PI / 180.0;
+    t2 = t2 * M_PI / 180.0;
 
-  t1 = t1 * M_PI / 180.0;
-  t2 = t2 * M_PI / 180.0;
+    float x = r * cos(t1);
+    float y = r * sin(t1);
 
-  while (t1 <= t2) {
-    painter.drawPoint(x + xc, yc -y);
+    while (t1 <= t2) {
+        // Map the point if needed
+        if (yc < 0 || xc < 0) {
+            mapPoint(xc, yc);
+        }
 
-    x = x * cosTheta - y * sinTheta;
-    y = x * sinTheta + y * cosTheta;
-    t1 += theta;
-  }
+        painter.drawPoint(xc + x, yc - y);
+
+        t1 += theta;
+        x = r * cos(t1);
+        y = r * sin(t1);
+    }
 }
+
 
 void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
 

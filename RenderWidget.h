@@ -28,7 +28,7 @@ public:
   void drawCircle(float xc, float yc, float r);
   void drawArc(float xc, float yc, float t1, float t2, float r);
   void drawEllipse(float xc, float yc, float a, float b);
-
+  void drawTableLamp();
 
 
 protected:
