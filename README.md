@@ -1,5 +1,5 @@
 
-# Table Lamp Computer Graphics 💡
+# Computer Graphics 💡
 
 ## Overview
 Welcome to the Table Lamp project, developed at Palestine Polytechnic University. This project provides a versatile rendering widget implemented in C++ using the Qt framework and is built using CMake. The widget is designed to facilitate the drawing of various geometric shapes, including lines, circles, ellipses, and arcs. Using these basic shapes I used them to drow a simple Lamp.
@@ -27,6 +27,15 @@ Create ellipses by specifying the center and major and minor axes with the drawE
 The following picture show the table lamp that we draw using the simple functionality provided above.
 
 ![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869 )
+
+<br><br>
+
+## Drawing a Car 🚗✨
+The following picture show the car that we draw using the simple functionality provided above.
+
+![Screenshot from 2024-03-12 15-34-26](https://github.com/SarahAbuirmeileh/ComputerGraphics/assets/127017088/79db80d9-3a75-44fa-824b-be41e6716fda)
+
+
 
 <br><br>
 
