@@ -21,6 +21,13 @@ Specify the center, start angle, end angle, and radius to draw precise arcs usin
 4. Drawing Ellipses 🥚<br>
 Create ellipses by specifying the center and major and minor axes with the drawEllipse method.
 
+5. Clipping Lines 📏<br>
+   Added functionality for clipping lines using the Cohen-Sutherland algorithm
+   
+6. Filling Convex Polygons  🎨🖌<br>
+Filling convex and H-convex polygons using scanline filling technique.
+
+
 <br><br>
 
 ## Drawing a Table Lamp 💡🛋️
