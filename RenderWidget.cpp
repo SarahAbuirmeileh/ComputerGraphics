@@ -25,7 +25,7 @@ QSize RenderWidget::sizeHint() const{
 void RenderWidget::paintEvent(QPaintEvent *){
   //drawTableLamp();
   //drawCar();
-
+  CohenSutherland(0, 0, 500, 500, 200, 400, 200, 400);
 }
 
 void RenderWidget::drawTableLamp(){
