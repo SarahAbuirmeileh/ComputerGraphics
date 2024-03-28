@@ -362,6 +362,9 @@ void RenderWidget::CohenSutherland(float x1, float y1, float x2, float y2, float
     // Case 3: Otherwise
     // Clip both points
     float m = (y2 - y1) / (x2 - x1);
+
+    // Array of pointers, each one represents the value of a point
+    // When we change the value in the array the change affect the variable it self since er store the reference to it
     float* xArr[] = {&x1, &x2};
     float* yArr[] = {&y1, &y2};
     std::string regionPointArr[] = {regionPoint1, regionPoint2};
