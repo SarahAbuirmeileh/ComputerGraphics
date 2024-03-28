@@ -418,6 +418,66 @@ void RenderWidget::CohenSutherland(float x1, float y1, float x2, float y2, float
   }
 }
 
+void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[], int verticesNumber, int scanlineNumber, float xMax, float xMin, float yMin){
+  
+  // The scanline table consists of 2 columns: the first is xMin and the second is xMax
+  // The number of rows depends on the hight of the frame buffer
+  float scanlineTable [scanlineNumber][2];
+
+  // Initialize the array and but the maximum value in the xMin and vice versa, to determine weather there is a span in this scan line or no
+  // If the xMin < xMax -> there is a span in this scanline 
+  for (int i = 0; i < scanlineNumber; i++){
+    for (int j = 0; j < 2; j++){
+      scanlineTable[i][j] = ( j == 0 ) ? xMax : xMin;
+    }
+  }
+
+  float mm; // 1/m
+  float x1, y1, x2, y2;
+  
+  // Now we update te scanline table according to the polygon vertices 
+  for (int i = 0; i < verticesNumber; i++){
+    // polygonVertices[i].first -> the x value for point i & polygonVertices[i].second -> the y value for point i
+    x1 = polygonVertices[i].first, y1 = polygonVertices[i].second;
+
+    // I added the percentage to handle the case (the edge) between the first and last vertices
+    x2 = polygonVertices[(i + 1) % verticesNumber].first, y2 = polygonVertices[(i + 1) % verticesNumber].second; 
+    mm = (x2 - x1) / (y2 - y1 );
+
+    drawLine(x1,y1,x2,y2);
+
+    if (y2 < y1){
+      std::swap(y2, y1);
+      std::swap(x2, x1);
+    }
+
+    float x = x1, y = y1;
+    // Loop to the whole scanlines between each two vertices
+    while(y <= y2){
+      // Insert (x,y) into SLT (update the table)
+      scanlineTable[int(y)][0] = std::min(scanlineTable[int(y)][0], x);
+      scanlineTable[int(y)][1] = std::max(scanlineTable[int(y)][1], x);
+      
+      x += mm;
+      y++;
+    }
+  }
+
+  // Or you can use for each loop
+  // for (auto point : polygonVertices ){
+  //
+  // } 
+
+  // Now the scanline table is ready, we will use it to fill the polygon
+  for (int y = yMin ; y < scanlineNumber; y++){
+    // Check if there is a span in this scanline
+    if (scanlineTable[y][0] < scanlineTable[y][1]){
+      // draw a line in this scanline
+      drawLine(scanlineTable[y][0], y, scanlineTable[y][1], y);
+    }
+  }
+}
+
 void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2){
   QPainter painter(this);
 

@@ -31,6 +31,7 @@ public:
   void drawTableLamp();
   void drawCar();
   void CohenSutherland(float point1X, float point1Y, float point2X, float point2Y, float wLeft, float wRight, float wTop, float wBottom);
+  void convexPolygonFilling(std::pair<float, float> polygonVertices[], int verticesNumber, int scanlineNumber, float xMax, float xMin, float yMin);
 
 protected:
   void paintEvent(QPaintEvent *event) override;
