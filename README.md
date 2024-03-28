@@ -2,7 +2,7 @@
 # Computer Graphics 💡
 
 ## Overview
-Welcome to the Table Lamp project, developed at Palestine Polytechnic University. This project provides a versatile rendering widget implemented in C++ using the Qt framework and is built using CMake. The widget is designed to facilitate the drawing of various geometric shapes, including lines, circles, ellipses, and arcs. Using these basic shapes I used them to drow a simple Lamp.
+Welcome to the Table Lamp project, developed at Palestine Polytechnic University. This project provides a versatile rendering widget implemented in C++ using the Qt framework and is built using CMake. The widget is designed to facilitate the drawing of various geometric shapes, including lines, circles, ellipses, and arcs. Using these basic shapes I used them to draw a simple Lamp.
 
 Whether you're a student exploring computer graphics or a developer seeking a lightweight graphics rendering tool, RenderWidget aims to meet your needs and goals. 🎯🔥
 
@@ -26,15 +26,15 @@ Create ellipses by specifying the center and major and minor axes with the drawE
 ## Drawing a Table Lamp 💡🛋️
 The following picture show the table lamp that we draw using the simple functionality provided above.
 
-![image](https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/b69d48db-152b-4ac3-8d2e-f24c7960e869 )
+<img src="https://github.com/SarahAbuirmeileh/SarahAbuirmeileh/assets/127017088/7da39e92-afcf-4da3-a87e-d39789a68c8f" width="550" height="550">
+
 
 <br><br>
 
 ## Drawing a Car 🚗✨
 The following picture show the car that we draw using the simple functionality provided above.
 
-![Screenshot from 2024-03-12 15-34-26](https://github.com/SarahAbuirmeileh/ComputerGraphics/assets/127017088/79db80d9-3a75-44fa-824b-be41e6716fda)
-
+<img src="https://github.com/SarahAbuirmeileh/SarahAbuirmeileh/assets/127017088/40b5448a-5dea-4e94-a95e-ff7a7b838f61" width="550" height="550">
 
 
 <br><br>
@@ -42,10 +42,10 @@ The following picture show the car that we draw using the simple functionality p
 ## Note 📝
 Dimensions of the level in which the drawing is made are like this: 
 
-<img src="https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/718b3cab-ae39-42aa-9d41-9238c61ad73f" width="550" height="550">
+<img src="https://github.com/SarahAbuirmeileh/SarahAbuirmeileh/assets/127017088/6f8a4838-76ec-4501-b011-146ef2787188" width="550" height="550">
 
 <br> 
 
 But if you want to use this dimension ⬇️ you can call the functinn mapPoint(x,y) to map it to the original dimension
 
-<img src="https://github.com/SarahAbuirmeileh/tableLampComputerGraphics/assets/127017088/024d7c9e-bfe1-45c7-b147-d5db7a9f8b74" width="550" height="550">
+<img src="https://github.com/SarahAbuirmeileh/SarahAbuirmeileh/assets/127017088/e0e124c1-fd53-4450-a904-a0bc15906a5b" width="550" height="550">
