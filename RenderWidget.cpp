@@ -25,7 +25,10 @@ QSize RenderWidget::sizeHint() const{
 void RenderWidget::paintEvent(QPaintEvent *){
   //drawTableLamp();
   //drawCar();
+  
   //CohenSutherland(0, 0, 500, 500, 200, 400, 200, 400);
+  std::pair<float, float> polygonVertices[]={{200,200}, {400, 200}, {400, 400}, {200, 400}};
+  convexPolygonFilling(polygonVertices, 4, 600, 0, 600, 0);
 
 }
 
