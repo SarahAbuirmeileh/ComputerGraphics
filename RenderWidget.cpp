@@ -25,7 +25,8 @@ QSize RenderWidget::sizeHint() const{
 void RenderWidget::paintEvent(QPaintEvent *){
   //drawTableLamp();
   //drawCar();
-  CohenSutherland(0, 0, 500, 500, 200, 400, 200, 400);
+  //CohenSutherland(0, 0, 500, 500, 200, 400, 200, 400);
+
 }
 
 void RenderWidget::drawTableLamp(){
@@ -418,11 +419,12 @@ void RenderWidget::CohenSutherland(float x1, float y1, float x2, float y2, float
   }
 }
 
-void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[], int verticesNumber, int scanlineNumber, float xMax, float xMin, float yMin){
+void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[], int verticesNumber, float xMax, float xMin, float yMax, float yMin){
   
   // The scanline table consists of 2 columns: the first is xMin and the second is xMax
   // The number of rows depends on the hight of the frame buffer
-  float scanlineTable [scanlineNumber][2];
+  float scanlineNumber = yMax - yMin;
+  float scanlineTable [int(scanlineNumber)][2];
 
   // Initialize the array and but the maximum value in the xMin and vice versa, to determine weather there is a span in this scan line or no
   // If the xMin < xMax -> there is a span in this scanline 
@@ -469,7 +471,7 @@ void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[
   // } 
 
   // Now the scanline table is ready, we will use it to fill the polygon
-  for (int y = yMin ; y < scanlineNumber; y++){
+  for (int y = yMin ; y < yMax; y++){
     // Check if there is a span in this scanline
     if (scanlineTable[y][0] < scanlineTable[y][1]){
       // draw a line in this scanline
