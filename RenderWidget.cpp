@@ -24,7 +24,7 @@ QSize RenderWidget::sizeHint() const{
 
 void RenderWidget::paintEvent(QPaintEvent *){
   //drawTableLamp();
-  drawCar();
+  //drawCar();
 
 }
 
@@ -291,7 +291,6 @@ void RenderWidget::drawArc(float xc, float yc, float t1, float t2, float r) {
     }
 }
 
-
 void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
 
   QPainter painter(this);
@@ -317,6 +316,103 @@ void RenderWidget::drawEllipse(float xc, float yc, float a, float b) {
   }
 }
 
+void RenderWidget::CohenSutherland(float x1, float y1, float x2, float y2, float wLeft, float wRight, float wTop, float wBottom) {
+  
+  // Clipping line according to Cohen-Sutherland Algorithm
+  // Send the 2 vertices for line that you want to clip, and the dimensions for the window to clip against it 
+
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+  
+  // Iterative clipping until the line is completely inside or outside the window
+  while (true){
+    // Giving regions for the points
+    std::string regionPoint1 = "", regionPoint2 = "";
+
+    regionPoint1 += ( y1 < wTop  ) ? "T" : ( y1 >  wBottom) ?  "B" : "";
+    regionPoint1 += ( x1 < wLeft ) ? "L" : ( x1 > wRight) ? "R" : "";
+
+    regionPoint2 += ( y2 < wTop  ) ? "T" : ( y2 >  wBottom) ?  "B" : "";
+    regionPoint2 += ( x2 < wLeft ) ? "L" : ( x2 > wRight) ? "R" : "";
+
+    // Case 1 : The whole line is in the window (visible) -> draw it 
+    if (regionPoint1 == "" && regionPoint2 == ""){
+      drawLine(x1, y1, x2, y2);
+      return;
+    }
+
+    // Case 2 : The whole line is outside the window (invisible) -> do not draw anything
+    // if the intersection between the tow points region is {} 
+    bool isOutside = false;
+    for (char c : regionPoint1) {
+        if (regionPoint2.find(c) != std::string::npos) {
+            // If there's a common character between the two region strings,
+            // it means there's a part of the line inside the window.
+            isOutside = true;
+            break;
+        }
+    }
+
+    // If no common character found, the line is completely outside the window.
+    if (isOutside) {
+        return;
+    }
+
+    // Case 3: Otherwise
+    // Clip both points
+    float m = (y2 - y1) / (x2 - x1);
+    float* xArr[] = {&x1, &x2};
+    float* yArr[] = {&y1, &y2};
+    std::string regionPointArr[] = {regionPoint1, regionPoint2};
+
+
+    for (int i = 0; i < 2; ++i) {
+      // In the first loop we clip the first point against the 4 directions, and in the second loop we do fo the second one
+      // I did this to avoid creating new function
+
+      if (regionPointArr[i].find("L") != std::string::npos) {
+          *yArr[i] += m * (wLeft - *xArr[i]);
+          *xArr[i] = wLeft;
+      } else if (regionPointArr[i].find("R") != std::string::npos) {
+          *yArr[i] += m * (wRight - *xArr[i]);
+          *xArr[i] = wRight;
+      }
+
+      if (regionPointArr[i].find("T") != std::string::npos) {
+          *xArr[i] += (wTop - *yArr[i]) / m;
+          *yArr[i] = wTop;
+      } else if (regionPointArr[i].find("B") != std::string::npos) {
+          *xArr[i] += (wBottom - *yArr[i]) / m;
+          *yArr[i] = wBottom;
+      }
+    }
+
+    /*
+      Other 2 alterative ways for Case 3:
+
+        1. repeat this code for the 2 points
+
+            float m = (y2 - y1) / (x2 - x1);
+            if (regionPoint1.find("L") != string::npos ){
+              y1 += m * (wLeft - x1);
+              x1 = wLeft;
+            }else if (regionPoint1.find("R") != string::npos ){
+              y1 += m * (wRight - x1 );
+              x1 = wRight;
+            }
+
+            if (regionPoint1.find("T") != string::npos ){
+              x1 += (wTop - y1) / m;
+              y1 = wTop;
+            }else if (regionPoint1.find("B") != string::npos ){
+              x1 += (wBottom - y1) / m;
+            }
+
+        2. Write a function to clip a point, and call it twice   
+    */
+  }
+}
 
 void RenderWidget::myDrawLine(float x1, float y1, float x2, float y2){
   QPainter painter(this);

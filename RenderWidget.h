@@ -30,6 +30,7 @@ public:
   void drawEllipse(float xc, float yc, float a, float b);
   void drawTableLamp();
   void drawCar();
+  void CohenSutherland(float point1X, float point1Y, float point2X, float point2Y, float wLeft, float wRight, float wTop, float wBottom);
 
 protected:
   void paintEvent(QPaintEvent *event) override;
