@@ -27,9 +27,11 @@ void RenderWidget::paintEvent(QPaintEvent *){
   //drawCar();
   
   //CohenSutherland(0, 0, 500, 500, 200, 400, 200, 400);
-  std::pair<float, float> polygonVertices[]={{200,200}, {400, 200}, {400, 400}, {200, 400}};
-  convexPolygonFilling(polygonVertices, 4, 600, 0, 600, 0);
 
+  int verticesNumber = 6;
+  // Give the vertices coordinates as a pair {x, y} 
+  std::pair<float, float> polygonVertices[verticesNumber]={{50,100}, {200, 50}, {300, 300}, {150, 400}, {0, 300}, {100, 200}};
+  convexPolygonFilling(polygonVertices, verticesNumber, 600, 0, 600, 0);
 }
 
 void RenderWidget::drawTableLamp(){
@@ -141,7 +143,7 @@ void RenderWidget::drawLine(float x1, float y1, float x2, float y2){
   }
 }
 
-void RenderWidget::drawLineFromDerivation(float x1, float y1, float x2, float y2){
+void RenderWidget::drawLineMyDerivation(float x1, float y1, float x2, float y2){
 
   QPainter painter(this);
   QColor color(0, 0, 0);
@@ -449,7 +451,8 @@ void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[
     x2 = polygonVertices[(i + 1) % verticesNumber].first, y2 = polygonVertices[(i + 1) % verticesNumber].second; 
     mm = (x2 - x1) / (y2 - y1 );
 
-    drawLine(x1,y1,x2,y2);
+    // To draw the polygon border (optionally)
+    myDrawLine(x1,y1,x2,y2);
 
     if (y2 < y1){
       std::swap(y2, y1);
@@ -478,7 +481,7 @@ void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[
     // Check if there is a span in this scanline
     if (scanlineTable[y][0] < scanlineTable[y][1]){
       // draw a line in this scanline
-      drawLine(scanlineTable[y][0], y, scanlineTable[y][1], y);
+      drawLineMyDerivation(scanlineTable[y][0], y, scanlineTable[y][1], y);
     }
   }
 }
