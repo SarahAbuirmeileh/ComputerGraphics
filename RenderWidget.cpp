@@ -476,12 +476,18 @@ void RenderWidget::convexPolygonFilling(std::pair<float, float> polygonVertices[
   //
   // } 
 
+  QPainter painter(this);
+  QColor color(0, 0, 0);
+  painter.setPen(color);
+
   // Now the scanline table is ready, we will use it to fill the polygon
   for (int y = yMin ; y < yMax; y++){
     // Check if there is a span in this scanline
     if (scanlineTable[y][0] < scanlineTable[y][1]){
       // draw a line in this scanline
-      drawLineMyDerivation(scanlineTable[y][0], y, scanlineTable[y][1], y);
+      for (int x = scanlineTable[y][0]; x < scanlineTable[y][1]; x++){
+         painter.drawPoint(x, y);
+      }
     }
   }
 }
